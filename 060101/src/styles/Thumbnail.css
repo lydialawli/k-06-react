@@ -1,0 +1,6 @@
+.thumbnail {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow:  5px 5px 10px rgb(207, 207, 207);
+}
