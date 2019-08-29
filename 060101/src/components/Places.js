@@ -1,5 +1,6 @@
 import React from 'react'
 import '../styles/Places.css'
+import Favorites from '../components/Favorites.js'
 
 class Places extends React.Component {
     state = {
@@ -55,6 +56,7 @@ class Places extends React.Component {
                         })
                     }
                 </div>
+                <Favorites />
             </div>
         )
 
