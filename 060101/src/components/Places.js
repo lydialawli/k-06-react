@@ -10,40 +10,51 @@ class Places extends React.Component {
                 title: 'Duplex with Garden',
                 price: 2.000,
                 location: 'Marina',
+                like: false,
             },
             {
                 title: 'Double Room Shared House',
                 price: 500,
                 location: 'Ramblas',
+                like: false,
             },
             {
                 title: 'Single Room Shared House',
                 price: 300,
                 location: 'Ramblas',
+                like: false,
             },
             {
                 title: 'Studio Lounge small',
                 price: 1.000,
                 location: 'Barceloneta',
+                like: false,
             },
             {
                 title: 'Studio Lounge Big',
                 price: 3.000,
                 location: 'Barceloneta',
+                like: false,
             },
             {
                 title: 'Single room private House',
                 price: 200,
                 location: 'Eixample',
+                like: false,
             },
-        ]
+        ],
+        likedPlaces: []
     }
 
-    getListPlaces = () => {
+    filterNavs = () => {
+        return this.state.places.filter(e => e.like)
+    }
+
+    printListCards = (array) => {
         return (
-            this.state.places.map((p, i) => {
+            array.map((p, i) => {
                 return (
-                    <Thumbnail key={i} place={p} />
+                    <Thumbnail key={i} place={p} index={i} onPressLike={this.onPressedLike} />
                 )
             })
         )
@@ -53,19 +64,31 @@ class Places extends React.Component {
         return this.state.places
     }
 
-  
+    onPressedLike = (i) => {
+        this.setState({
+            likedPlaces: this.state.likedPlaces.push(this.state.places[i])
+        })
+        console.log(this.state.likedPlaces)
+    }
+
+
 
     render() {
         return (
             <div>
                 <h1>{this.state.places.length} Places</h1>
-                <div className="thumbnails">
-                    {this.getListPlaces()}
+                <div className="allPlacesShown">
+                    {this.state.places.map((p, i) => {
+                        return (
+                            <Thumbnail key={i} place={p} index={i} onPressLike={this.onPressedLike} />
+                        )
+                    })}
                 </div>
                 <h1>Favorites</h1>
                 <Favorites
-                likedPlaces={this.getLikedPlaces()}></Favorites>
-            
+                    likedPlaces={this.state.likedPlaces}>
+                </Favorites>
+
             </div>
         )
 

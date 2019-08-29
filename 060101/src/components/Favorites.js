@@ -1,15 +1,17 @@
 import React from 'react'
 import '../styles/Favorites.css'
+import Thumbnail from '../components/Thumbnail.js'
 
 
 class Favorites extends React.Component {
 
-    state = {
-        arrayLikedPlaces: this.props.likedPlaces
-    }
+
 
     render() {
-        return <div className="favorites">hello</div>
+
+        return <div className="favorites">
+            {console.log(this.props.likedPlaces)}
+        </div>
     }
 
 }
