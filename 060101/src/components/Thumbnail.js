@@ -14,24 +14,23 @@ class Thumbnail extends React.Component {
                 liked: false,
                 button: 'unlike'
             })
-            this.props.onPressLike(this.props.index)
+            this.props.like(this.props.index,true)
 
         } else {
             this.setState({
                 liked: true,
                 button: 'Like',
             })
+            this.props.like(this.props.index,false)
         }
        
 
-        console.log(this.state.liked)
+        // console.log(this.state.liked)
     }
 
     getLike = (liked) => {
         return liked ? 'liked' : ''
     }
-
-
 
     render() {
         return (

@@ -43,32 +43,28 @@ class Places extends React.Component {
                 like: false,
             },
         ],
-        likedPlaces: []
     }
 
     filterNavs = () => {
         return this.state.places.filter(e => e.like)
     }
 
-    printListCards = (array) => {
-        return (
-            array.map((p, i) => {
-                return (
-                    <Thumbnail key={i} place={p} index={i} onPressLike={this.onPressedLike} />
-                )
-            })
-        )
-    }
 
     getLikedPlaces = () => {
         return this.state.places
     }
 
-    onPressedLike = (i) => {
-        this.setState({
-            likedPlaces: this.state.likedPlaces.push(this.state.places[i])
+    like = (ind, like) => {
+        let newArray = this.state.places.map((e,i)=>{
+            if(i===ind){
+                e.like = like
+            }
+            return e
         })
-        console.log(this.state.likedPlaces)
+
+        this.setState({
+            places: newArray
+        })
     }
 
 
@@ -80,13 +76,17 @@ class Places extends React.Component {
                 <div className="allPlacesShown">
                     {this.state.places.map((p, i) => {
                         return (
-                            <Thumbnail key={i} place={p} index={i} onPressLike={this.onPressedLike} />
+                            <Thumbnail key={i} place={p} index={i} like={this.like}/>
                         )
                     })}
                 </div>
                 <h1>Favorites</h1>
-                <Favorites
-                    likedPlaces={this.state.likedPlaces}>
+                <Favorites card={this.filterNavs().map((p, i) => {
+                    return (
+                        <Thumbnail key={i} place={p} index={i} like={this.like} />
+                    )
+                })}>
+
                 </Favorites>
 
             </div>
