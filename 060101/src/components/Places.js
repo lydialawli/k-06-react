@@ -39,21 +39,33 @@ class Places extends React.Component {
         ]
     }
 
+    getListPlaces = () => {
+        return (
+            this.state.places.map((p, i) => {
+                return (
+                    <Thumbnail key={i} place={p} />
+                )
+            })
+        )
+    }
+
+    getLikedPlaces = () => {
+        return this.state.places
+    }
+
+  
 
     render() {
         return (
             <div>
                 <h1>{this.state.places.length} Places</h1>
                 <div className="thumbnails">
-                    {
-                        this.state.places.map( (p,i) => {
-                            return (
-                                <Thumbnail key= {i} place={p} />
-                            )
-                        })
-                    }
+                    {this.getListPlaces()}
                 </div>
-                <Favorites />
+                <h1>Favorites</h1>
+                <Favorites
+                likedPlaces={this.getLikedPlaces()}></Favorites>
+            
             </div>
         )
 
