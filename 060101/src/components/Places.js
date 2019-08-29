@@ -8,45 +8,61 @@ class Places extends React.Component {
         places: [
             {
                 title: 'Duplex with Garden',
-                price: 2.000,
+                price: 2000,
                 location: 'Marina',
                 like: false,
+                button: 'Like'
             },
             {
                 title: 'Double Room Shared House',
-                price: 500,
+                price: 5000,
                 location: 'Ramblas',
                 like: false,
+                button: 'Like'
             },
             {
                 title: 'Single Room Shared House',
                 price: 300,
                 location: 'Ramblas',
                 like: false,
+                button: 'Like'
             },
             {
                 title: 'Studio Lounge small',
-                price: 1.000,
+                price: 1000,
                 location: 'Barceloneta',
                 like: false,
+                button: 'Like'
             },
             {
                 title: 'Studio Lounge Big',
-                price: 3.000,
+                price: 3000,
                 location: 'Barceloneta',
                 like: false,
+                button: 'Like'
             },
             {
                 title: 'Single room private House',
-                price: 200,
+                price: 400,
                 location: 'Eixample',
                 like: false,
+                button: 'Like'
             },
         ],
     }
 
     filterNavs = () => {
-        return this.state.places.filter(e => e.like)
+        let likedPlaces = this.state.places.filter(e => e.like)
+        
+        return likedPlaces.map(e => {
+            return {
+                title: e.title,
+                price: e.price,
+                location: e.location,
+                like: true,
+                button: 'Unlike'
+            }
+        })
     }
 
 
@@ -58,7 +74,9 @@ class Places extends React.Component {
         let newArray = this.state.places.map((e,i)=>{
             if(i===ind){
                 e.like = like
-            }
+                like ?  e.button='Unlike' : e.button='Like'
+               
+            } 
             return e
         })
 
@@ -76,14 +94,14 @@ class Places extends React.Component {
                 <div className="allPlacesShown">
                     {this.state.places.map((p, i) => {
                         return (
-                            <Thumbnail key={i} place={p} index={i} like={this.like}/>
+                            <Thumbnail key={i} place={p} index={i} liked={p.like} like={this.like} button={p.button}/>
                         )
                     })}
                 </div>
                 <h1>Favorites</h1>
                 <Favorites card={this.filterNavs().map((p, i) => {
                     return (
-                        <Thumbnail key={i} place={p} index={i} like={this.like} />
+                        <Thumbnail key={i} place={p} index={i} liked={p.like} like={this.like}  button={p.button}/>
                     )
                 })}>
 

@@ -5,14 +5,14 @@ class Thumbnail extends React.Component {
 
     state = {
         liked: true,
-        button: 'Like',
+        button: 'Unlike',
     }
 
     changeLiked = () => {
         if (this.state.liked) {
             this.setState({
                 liked: false,
-                button: 'unlike'
+                button: 'Unlike'
             })
             this.props.like(this.props.index,true)
 
@@ -23,13 +23,12 @@ class Thumbnail extends React.Component {
             })
             this.props.like(this.props.index,false)
         }
-       
 
         // console.log(this.state.liked)
     }
 
     getLike = (liked) => {
-        return liked ? 'liked' : ''
+        return liked ? '' : 'liked'
     }
 
     render() {
@@ -38,7 +37,7 @@ class Thumbnail extends React.Component {
                 <h2>{this.props.place.title}</h2>
                 <h3>{this.props.place.price}</h3>
                 <p>{this.props.place.location}</p>
-                <button className={this.getLike(this.state.liked)} onClick={this.changeLiked}>{this.state.button}</button>
+                <button className={this.getLike(this.props.liked)} onClick={this.changeLiked}>{this.props.button}</button>
             </div>
         )
     }
