@@ -1,8 +1,9 @@
 import React from 'react';
 import './App.css';
+import Places from './components/Places.js'
 
 function App() {
-  return <h1>Hello World</h1>;
+  return <Places />
 }
 
 export default App;
