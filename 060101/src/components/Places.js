@@ -38,7 +38,25 @@ class Places extends React.Component {
 
 
     render() {
-        return <h1>{this.state.places.length} Places</h1>
+        return (
+            <div>
+                <h1>{this.state.places.length} Places</h1>
+                <div class="thumbnails">
+                    {
+                        this.state.places.map(p => {
+                            return (
+                                <div class="thumbnail">
+                                <h2>{p.title}</h2>
+                                <h3>{p.price}</h3>
+                                <p>{p.location}</p>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+            </div>
+        )
+
     }
 }
 
