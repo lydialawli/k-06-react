@@ -5,7 +5,7 @@ import '../styles/Favorites.css'
 class Favorites extends React.Component {
 
     render() {
-        return <div class="favorites"></div>
+        return <div className="favorites"></div>
     }
 
 }

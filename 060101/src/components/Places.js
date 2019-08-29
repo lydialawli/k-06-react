@@ -44,11 +44,11 @@ class Places extends React.Component {
         return (
             <div>
                 <h1>{this.state.places.length} Places</h1>
-                <div class="thumbnails">
+                <div className="thumbnails">
                     {
-                        this.state.places.map(p => {
+                        this.state.places.map( (p,i) => {
                             return (
-                                <Thumbnail place={p} />
+                                <Thumbnail key= {i} place={p} />
                             )
                         })
                     }

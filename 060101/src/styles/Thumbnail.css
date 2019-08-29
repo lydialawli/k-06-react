@@ -4,3 +4,12 @@
     border-radius: 10px;
     box-shadow:  5px 5px 10px rgb(207, 207, 207);
 }
+
+.liked {
+    background-color: rgb(12, 170, 123);
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    padding: 5px 15px;
+}
+

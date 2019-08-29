@@ -4,15 +4,24 @@ import '../styles/Thumbnail.css'
 class Thumbnail extends React.Component {
 
     state = {
-        liked: false,
+        liked: true,
     }
 
     changeLiked = () => {
-        this.setState({
-            liked: true
-        })
-
+        if (this.state.liked) {
+            this.setState({
+                liked: false
+            })
+        } else {
+            this.setState({
+                liked: true
+            })
+        }
         console.log(this.state.liked)
+    }
+
+    getLike = (liked) => {
+        return liked ? 'liked' : ''
     }
 
     render() {
@@ -21,7 +30,7 @@ class Thumbnail extends React.Component {
                 <h2>{this.props.place.title}</h2>
                 <h3>{this.props.place.price}</h3>
                 <p>{this.props.place.location}</p>
-                <button onClick={this.changeLiked}>Like</button>
+                <button className={this.getLike(this.state.liked)} onClick={this.changeLiked}>Like</button>
             </div>
         )
     }
