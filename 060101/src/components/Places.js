@@ -33,13 +33,12 @@ class Places extends React.Component {
                 price: 200,
                 location: 'Eixample',
             },
-
         ]
     }
 
 
     render() {
-        return <h1>Hello World</h1>
+        return <h1>{this.state.places.length} Places</h1>
     }
 }
 
