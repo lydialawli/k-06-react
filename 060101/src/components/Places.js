@@ -55,7 +55,8 @@ class Places extends React.Component {
                 liked: false
             },
         ],
-        favouritePlaces: []
+        favouritePlaces: [],
+        filteredPlaces: []
     }
 
 
@@ -79,23 +80,18 @@ class Places extends React.Component {
         console.log('added fav', favouritePlaces)
     }
 
-    filterPlaces = (text) => {
-        let places = this.state.places.filter(e =>
-            e.title.includes(text) )
-        
-
-        this.setState({ places })
-        console.log('parent',text)
+    updateState = (array) => {
+        this.setState({filteredPlaces:array})
+        console.log(this.state.filteredPlaces)
     }
-
 
     render() {
         return (
             <div>
-                <Search textValue={this.filterPlaces} />
-                <h1>{this.state.places.length} Places</h1>
+                <Search array={this.state.places} onChanged={this.updateState}/>
+                <h1>{this.state.filteredPlaces.length} Places</h1>
                 <div className="allPlacesShown">
-                    {this.state.places.map((p, i) => {
+                    {this.state.filteredPlaces.map((p, i) => {
                         return (
                             <Thumbnail key={i} place={p} index={i} like={this.like} />
                         )
@@ -111,3 +107,33 @@ class Places extends React.Component {
 }
 
 export default Places
+
+
+
+{/* 
+     like = (id) => {
+        let places = this.state.places
+        let element = places.find(e => e.id === id)
+        let favouritePlaces = this.state.favouritePlaces
+
+        element.liked = !element.liked
+
+        if (element.liked) {
+            if (!favouritePlaces.find(e => e.id === id))
+                favouritePlaces.push(element)
+        }
+        else {
+            favouritePlaces = favouritePlaces.filter(e => e.id !== id)
+        }
+
+        this.setState({ places, favouritePlaces })
+        console.log('added fav', favouritePlaces)
+    }    
+    
+    <div className="allPlacesShown">
+{this.state.places.map((p, i) => {
+    return (
+        <Thumbnail key={i} place={p} index={i} like={this.like} />
+    )
+})}
+</div> */}
