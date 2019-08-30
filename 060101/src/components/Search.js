@@ -4,12 +4,17 @@ import '../styles/Search.css'
 
 
 class Search extends React.Component {
-
-    render(){
-        return <input className={'input'} type={'text'}></input>
+  
+    handleChange = (event) => {
+        this.props.textValue(event.target.value)
     }
-     
-    
+
+    render() {
+        return <input  className={'input'} type={'text'} onChange={this.handleChange}
+        ></input>
+    }
+
+
 }
 
 
