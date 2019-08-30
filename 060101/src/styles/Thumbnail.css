@@ -14,4 +14,10 @@
 }
 
 
-
+.unliked {
+    background-color: rgb(99, 12, 170);
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    padding: 5px 15px;
+}
