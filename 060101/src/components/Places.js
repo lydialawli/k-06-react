@@ -2,6 +2,7 @@ import React from 'react'
 import '../styles/Places.css'
 import Favorites from '../components/Favorites.js'
 import Thumbnail from '../components/Thumbnail.js'
+import Search from '../components/Search.js'
 
 class Places extends React.Component {
     state = {
@@ -60,28 +61,20 @@ class Places extends React.Component {
     }
 
 
-    // getLikedPlaces = () => {
-    //     return this.state.places
-    // }
-
     like = (ind, like) => {
-        let newArray = this.state.places.map((e,i)=>{
-            if(i===ind){
-                // e.like = like
-                like==='Like' ?  e.button='Unlike' : e.button='Like' 
-            } 
-            return e
-        })
+        let places = this.state.places
 
-        this.setState({
-            places: newArray
-        })
+        like==='Like' ?  places[ind].button='Unlike' : places[ind].button='Like' 
+        
+        this.setState({places})
+
     }
 
 
     render() {
         return (
             <div>
+                <Search />
                 <h1>{this.state.places.length} Places</h1>
                 <div className="allPlacesShown">
                     {this.state.places.map((p, i) => {
