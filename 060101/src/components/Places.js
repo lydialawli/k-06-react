@@ -3,6 +3,7 @@ import '../styles/Places.css'
 import Favorites from '../components/Favorites.js'
 import Thumbnail from '../components/Thumbnail.js'
 import Search from '../components/Search.js'
+import { IoIosHeartEmpty,IoIosHeart } from 'react-icons/io'
 
 class Places extends React.Component {
     componentWillReceiveProps() {
@@ -90,6 +91,7 @@ class Places extends React.Component {
             <div>
                 <Search array={this.state.places} onChanged={this.updateState}/>
                 <h1>{this.state.filteredPlaces.length} Places</h1>
+                
                 <div className="allPlacesShown">
                     {this.state.filteredPlaces.map((p, i) => {
                         return (
@@ -97,7 +99,7 @@ class Places extends React.Component {
                         )
                     })}
                 </div>
-                <h1>Favorites</h1>
+                <h1><IoIosHeartEmpty/> Favorites</h1>
                 <Favorites places={this.state.favouritePlaces} like={this.like} />
 
             </div>
