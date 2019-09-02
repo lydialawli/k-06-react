@@ -1,6 +1,7 @@
 import React from 'react'
 
 
+
 class Place extends React.Component {
     state = {
         images: [
@@ -12,10 +13,30 @@ class Place extends React.Component {
     }
 
     render() {
-        return <h1>I'm a simple text!</h1>
+        return (
+            <div style={{ height: `100vh`, width: `100vw`, backgroundSize: `cover`, backgroundImage: `url(${this.state.images[0]})` }}>
+                <div>
+                    {
+                        this.state.images.map((e, i) => {
+                            if (i !== 0)
+                                return (
+                                    <div style={{ height: `200px`, width: `300px`, backgroundSize: `contain`, backgroundImage: `url(${this.state.images[i]})` }} ></div>
+                                )
+
+                        })
+
+
+                    }
+                </div>
+
+            </div>
+
+        )
     }
 
 }
 
 
 export default Place
+
+
