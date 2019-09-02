@@ -1,5 +1,5 @@
 import React from 'react'
-
+import '../styles/Place.css'
 
 
 class Place extends React.Component {
@@ -20,19 +20,21 @@ class Place extends React.Component {
     }
 
 
+    highlighted = (image) => {
+        return image === this.state.bigImage ? 'highlighted' : ''
+    }
+
+
     render() {
         return (
             <div style={{ height: `100vh`, width: `100vw`, backgroundSize: `cover`, backgroundImage: `url(${this.state.bigImage})` }}>
                 <div>
                     {
                         this.state.images.map((e, i) => {
-                                return (
-                                    <div style={{ height: `200px`, width: `300px`, backgroundSize: `contain`, backgroundImage: `url(${this.state.images[i]})` }} onClick={() => this.changeBigImage(i)}></div>
-                                )
-
+                            return (
+                                <div className={this.highlighted(e)} style={{ height: `200px`, width: `300px`, backgroundSize: `contain`, backgroundImage: `url(${this.state.images[i]})` }} onClick={() => this.changeBigImage(i)}></div>
+                            )
                         })
-
-
                     }
                 </div>
 
