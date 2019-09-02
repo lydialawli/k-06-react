@@ -9,18 +9,25 @@ class Place extends React.Component {
             'https://q-ak.bstatic.com/images/hotel/max1280x900/186/186223171.jpg',
             'https://r-ak.bstatic.com/images/hotel/max1280x900/186/186223174.jpg',
             'https://r-ak.bstatic.com/images/hotel/max1280x900/186/186223178.jpg'
-        ]
+        ],
+        bigImage: 'https://q-ak.bstatic.com/images/hotel/max1024x768/186/186223203.jpg'
     }
+
+    changeBigImage = (i) => {
+        this.setState({
+            bigImage: this.state.images[i]
+        })
+    }
+
 
     render() {
         return (
-            <div style={{ height: `100vh`, width: `100vw`, backgroundSize: `cover`, backgroundImage: `url(${this.state.images[0]})` }}>
+            <div style={{ height: `100vh`, width: `100vw`, backgroundSize: `cover`, backgroundImage: `url(${this.state.bigImage})` }}>
                 <div>
                     {
                         this.state.images.map((e, i) => {
-                            if (i !== 0)
                                 return (
-                                    <div style={{ height: `200px`, width: `300px`, backgroundSize: `contain`, backgroundImage: `url(${this.state.images[i]})` }} ></div>
+                                    <div style={{ height: `200px`, width: `300px`, backgroundSize: `contain`, backgroundImage: `url(${this.state.images[i]})` }} onClick={() => this.changeBigImage(i)}></div>
                                 )
 
                         })
