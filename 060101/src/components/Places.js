@@ -3,7 +3,7 @@ import '../styles/Places.css'
 import Favorites from '../components/Favorites.js'
 import Thumbnail from '../components/Thumbnail.js'
 import Search from '../components/Search.js'
-import { IoIosHeartEmpty,IoIosHeart } from 'react-icons/io'
+import { IoIosHeartEmpty, IoIosHeart } from 'react-icons/io'
 
 class Places extends React.Component {
     componentWillReceiveProps() {
@@ -57,9 +57,14 @@ class Places extends React.Component {
             },
         ],
         favouritePlaces: [],
-        filteredPlaces: []
+        originalPlaces: []
     }
 
+    componentWillMount() {
+        this.setState({
+            originalPlaces: this.state.places
+        })
+    }
 
 
     like = (id) => {
@@ -81,25 +86,29 @@ class Places extends React.Component {
         console.log('added fav', favouritePlaces)
     }
 
-    updateState = (array) => {
-        this.setState({filteredPlaces:array})
-        console.log(this.state.filteredPlaces)
+    filterPlaces = (text) => {
+
+        let filtered = this.state.originalPlaces.filter(e =>
+            e.title.toUpperCase().includes(text.toUpperCase()))
+
+        this.setState({ places: filtered })
     }
+
 
     render() {
         return (
             <div>
-                <Search array={this.state.places} onChanged={this.updateState}/>
-                <h1>{this.state.filteredPlaces.length} Places</h1>
-                
+                <Search array={this.state.places} onChanged={this.filterPlaces} />
+                <h1>{this.state.places.length} Places</h1>
+
                 <div className="allPlacesShown">
-                    {this.state.filteredPlaces.map((p, i) => {
+                    {this.state.places.map((p, i) => {
                         return (
                             <Thumbnail key={i} place={p} index={i} like={this.like} />
                         )
                     })}
                 </div>
-                <h1><IoIosHeartEmpty/> Favorites</h1>
+                <h1><IoIosHeartEmpty /> Favorites</h1>
                 <Favorites places={this.state.favouritePlaces} like={this.like} />
 
             </div>
@@ -112,30 +121,3 @@ export default Places
 
 
 
-{/* 
-     like = (id) => {
-        let places = this.state.places
-        let element = places.find(e => e.id === id)
-        let favouritePlaces = this.state.favouritePlaces
-
-        element.liked = !element.liked
-
-        if (element.liked) {
-            if (!favouritePlaces.find(e => e.id === id))
-                favouritePlaces.push(element)
-        }
-        else {
-            favouritePlaces = favouritePlaces.filter(e => e.id !== id)
-        }
-
-        this.setState({ places, favouritePlaces })
-        console.log('added fav', favouritePlaces)
-    }    
-    
-    <div className="allPlacesShown">
-{this.state.places.map((p, i) => {
-    return (
-        <Thumbnail key={i} place={p} index={i} like={this.like} />
-    )
-})}
-</div> */}
